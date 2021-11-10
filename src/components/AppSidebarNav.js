@@ -1,0 +1,80 @@
+import { CBadge } from '@coreui/react';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import authorizationSidebarNav from './AuthorizationSidebarNav';
+
+export const AppSidebarNav = ({ items }) => {
+  const location = useLocation()
+  const navLink = (name, icon, badge) => {
+    return (
+      <>
+        {icon && icon}
+        {name && name}
+        {badge && (
+          <CBadge color={badge.color} className="ms-auto">
+            {badge.text}
+          </CBadge>
+        )}
+      </>
+    )
+  }
+
+  const navItem = (item, index) => {
+    const { component, name, badge, icon, ...rest } = item
+    const Component = component
+    return (
+      <Component
+        {...(rest.to &&
+          !rest.items && {
+          component: NavLink,
+          activeClassName: 'active',
+        })}
+        key={index}
+        {...rest}
+      >
+        {navLink(name, icon, badge)}
+      </Component>
+    )
+  }
+
+  const navGroup = (item, index) => {
+    const { component, name, icon, to, ...rest } = item
+    const Component = component
+    return (
+      <Component
+        idx={String(index)}
+        key={index}
+        toggler={navLink(name, icon)}
+        visible={location.pathname.startsWith(to)}
+        {...rest}
+      >
+        {item.items?.map((item, index) =>
+          item.items ? navGroup(item, index) : navItem(item, index),
+        )}
+      </Component>
+    )
+  }
+
+  const result = authorizationSidebarNav();
+  let toArr = result.toArr; // items
+  let idArr = result.idArr; // titles
+
+  return (
+    <React.Fragment>
+      {items &&
+        items.map((item, index) => {
+          if (toArr.includes(item.to) || idArr.includes(item.id)) {
+            if (item.items) {
+              return navGroup(item, index)
+            }
+            else { return navItem(item, index) }
+          }
+        })}
+    </React.Fragment>
+  )
+}
+
+AppSidebarNav.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.any).isRequired,
+}

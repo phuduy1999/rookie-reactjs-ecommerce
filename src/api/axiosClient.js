@@ -39,7 +39,7 @@ axiosClient.interceptors.request.use(async (config) => {
   const token = await getToken();
 
   if (token) {
-    config.headers['x-access-token'] = token;
+    config.headers['Authorization'] = "Bearer " + token;
   }
 
   return config;

@@ -4,10 +4,6 @@ import loginApi from 'src/api/loginApi';
 import AppModalCustom from 'src/components/AppModalCustom';
 import './scss/style.scss';
 import InfoUserLogin from 'src/_infoUser';
-import DSKyTen from './views/components/report/DSKyTen';
-import BangDiem from './views/components/report/BangDiem';
-import LopMonHoc from './views/components/report/LopMonHoc';
-import CTBT from './views/components/report/CTBT';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -17,10 +13,10 @@ const loading = (
 
 // Containers
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
-const ReportLayout = React.lazy(() => import('./layout/ReportLayout'))
 
 // Pages
 const Login = React.lazy(() => import('./views/pages/login/Login'))
+const Register = React.lazy(() => import('./views/pages/register/Register'))
 const ChangePassword = React.lazy(() => import('./views/pages/changePassword/ChangePassword'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
@@ -68,6 +64,12 @@ const App = () => {
             render={(props) => <Login {...props} setIsLogin={setIsLogin} />} />
           <Route
             exact
+            path="/register"
+            name="Register Page"
+            render={(props) => <Register {...props} />}
+          />
+          <Route
+            exact
             path="/change-password"
             name="Change Password"
             render={(props) => {
@@ -88,24 +90,6 @@ const App = () => {
             path="/500"
             name="Page 500"
             render={(props) => <Page500 {...props} />} />
-          {/* report route */}
-          <Route
-            path="/report/ds-kyten/:id"
-            name="Report Page"
-            render={(props) => <DSKyTen {...props} />} />
-          <Route
-            path="/report/bangdiem/:id"
-            name="Report Page"
-            render={(props) => <BangDiem {...props} />} />
-          <Route
-            path="/report/lopmonhoc/:status"
-            name="Report Page"
-            render={(props) => <LopMonHoc {...props} />} />
-          <Route
-            path="/report/lopmonhoc-sv/:idlmh/:masv"
-            name="Report Page"
-            render={(props) => <CTBT {...props} />} />
-          {/* report route */}
           <Route
             path="/"
             name="Home"

@@ -7,17 +7,13 @@ export default function authorizationSidebarNav() {
 
   const user = InfoUserLogin();
   if (user && user.accessToken) {
-    if (user.MANQ === 'PGV') {
-      idArr = ['nhap-lieu', 'soan-cht', 'dk-thi']
-      toArr = ['/dashboard', '/khoa', '/giaovien', '/sinhvien', '/monhoc', '/lopmonhoc', '/bode', '/loaicauhoi', '/dangky'];
+    if (user.roles.some(() => "ROLE_EMPLOYEE")) {
+      idArr = ['nhap-lieu']
+      toArr = ['/category', '/product', '/product/list-products', '/product/create-products', '/category/list-categories', '/category/create-categories'];
     }
-    else if (user.MANQ === 'GV') {
+    else if (user.roles.some(() => "ROLE_CUSTOMER")) {
       idArr = ['soan-cht', 'dk-thi']
       toArr = ['/dashboard', '/bode', '/loaicauhoi', '/dangky', '/lopmonhoc/ds-lopmonhoc'];
-    }
-    else if (user.MANQ === 'admin') {
-      idArr = ['cs-dl'];
-      toArr = ['/csdl'];
     }
     else if (user.MANQ === 'SV') {
       const history = useHistory();
@@ -25,7 +21,7 @@ export default function authorizationSidebarNav() {
     }
   } else {
     idArr = ['tai-khoan']
-    toArr = ['/login'];
+    toArr = ['/login', '/register'];
   }
 
   return { idArr, toArr };

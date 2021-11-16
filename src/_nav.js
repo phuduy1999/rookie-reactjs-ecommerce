@@ -3,7 +3,7 @@ import {
   cibC,
   cibDynatrace,
   cibHackhands, cibSublimeText,
-  cibTumblr, cilPeople, cilSpeedometer,
+  cibTumblr, cilPeople, cilRectangle, cilSpeedometer,
   cilStar,
   cilStorage,
   cilUserFemale
@@ -25,160 +25,48 @@ const _nav = [
   },
   {
     component: CNavTitle,
-    name: 'Nhập liệu',
+    name: 'Form',
     id: 'nhap-lieu',
   },
   {
     component: CNavGroup,
-    name: 'Khoa',
-    to: '/khoa',
+    name: 'Categories',
+    to: '/category',
     icon: <CIcon icon={cibHackhands} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Danh sách khoa',
-        to: '/khoa/ds-khoa',
+        name: 'List Categories',
+        to: '/category/list-categories',
       },
       {
         component: CNavItem,
-        name: 'Thêm mới khoa',
-        to: '/khoa/them-khoa',
+        name: 'Create Categories',
+        to: '/category/create-categories',
       },
     ],
   },
   {
     component: CNavGroup,
-    name: 'Giáo viên',
-    to: '/giaovien',
+    name: 'Products',
+    to: '/product',
     icon: <CIcon icon={cilUserFemale} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Danh sách giáo viên',
-        to: '/giaovien/ds-giaovien',
+        name: 'List Products',
+        to: '/product/list-products',
       },
       {
         component: CNavItem,
-        name: 'Thêm mới giáo viên',
-        to: '/giaovien/them-giaovien',
-      },
-    ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Sinh viên',
-    to: '/sinhvien',
-    icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Danh sách sinh viên',
-        to: '/sinhvien/ds-sinhvien',
-      },
-      {
-        component: CNavItem,
-        name: 'Thêm mới sinh viên',
-        to: '/sinhvien/them-sinhvien',
-      },
-    ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Môn học',
-    to: '/monhoc',
-    icon: <CIcon icon={cibSublimeText} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Danh sách môn học',
-        to: '/monhoc/ds-monhoc',
-      },
-      {
-        component: CNavItem,
-        name: 'Thêm mới môn học',
-        to: '/monhoc/them-monhoc',
-      },
-    ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Lớp môn học',
-    to: '/lopmonhoc',
-    icon: <CIcon icon={cibC} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Danh sách lớp môn học',
-        to: '/lopmonhoc/ds-lopmonhoc',
-      },
-      {
-        component: CNavItem,
-        name: 'Thêm mới lớp môn học',
-        to: '/lopmonhoc/them-lopmonhoc',
+        name: 'Create Product',
+        to: '/product/create-products',
       },
     ],
   },
   {
     component: CNavTitle,
-    name: 'Soạn câu hỏi thi',
-    id: 'soan-cht',
-  },
-  {
-    component: CNavGroup,
-    name: 'Bộ đề',
-    to: '/bode',
-    icon: <CIcon icon={cibBitdefender} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Danh sách câu hỏi thi',
-        to: '/bode/ds-bode',
-      },
-      {
-        component: CNavItem,
-        name: 'Thêm mới câu hỏi thi',
-        to: '/bode/them-bode',
-      },
-    ],
-  },
-  {
-    component: CNavItem,
-    name: 'Loại câu hỏi',
-    to: '/loaicauhoi',
-    icon: <CIcon icon={cibTumblr} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavTitle,
-    name: 'Đăng ký thi',
-    id: 'dk-thi'
-  },
-  {
-    component: CNavGroup,
-    name: 'Đăng ký thi',
-    to: '/dangky',
-    icon: <CIcon icon={cibDynatrace} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Danh sách đăng ký thi',
-        to: '/dangky/ds-dangky',
-      },
-      {
-        component: CNavItem,
-        name: 'Đăng ký thi mới',
-        to: '/dangky/them-dangky',
-      },
-    ],
-  },
-  {
-    icon: <CIcon icon={cibC} customClassName="nav-icon" />,
-    component: CNavItem,
-    name: 'Danh sách lớp môn học',
-    to: '/lopmonhoc/ds-lopmonhoc',
-  },
-  {
-    component: CNavTitle,
-    name: 'Tài khoản',
+    name: 'Account',
     id: 'tai-khoan'
   },
   {
@@ -188,15 +76,10 @@ const _nav = [
     icon: <CIcon icon={cilStar} customClassName="nav-icon" />
   },
   {
-    component: CNavTitle,
-    name: 'Cơ sở dữ liệu',
-    id: 'cs-dl'
-  },
-  {
     component: CNavItem,
-    name: 'Sao lưu và phục hồi',
-    to: '/csdl',
-    icon: <CIcon icon={cilStorage} customClassName="nav-icon" />
+    name: 'Register',
+    to: '/register',
+    icon: <CIcon icon={cilRectangle} customClassName="nav-icon" />
   },
 ]
 

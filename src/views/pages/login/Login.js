@@ -36,42 +36,28 @@ const Login = (props) => {
       event.stopPropagation()
     }
     else {
-      loginApi.login({
-        EMAIL: email,
-        PASSWORD: pass,
-      }).then(response => {
-        console.log(response);
+      const bodyFormData = new FormData();
+      bodyFormData.append('email', email);
+      bodyFormData.append('password', pass);
+      loginApi.login(bodyFormData)
+        .then(response => {
+          console.log(response);
 
-        const user = { ...response };
+          const user = { ...response.data };
 
-        const token = response.accessToken;
-        if (token) {
-          const decoded = jwt_decode(token);
-          if (decoded.MAGV) {
-            user.MAGV = decoded.MAGV.trim();
-          }
-          else if (decoded.MASV) {
-            user.MASV = decoded.MASV.trim();
-          }
-          user.EMAIL = decoded.EMAIL.trim();
-          user.MANQ = decoded.MANQ.trim();
-        }
-
-        if (response.accessToken) {
           localStorage.setItem("user", JSON.stringify(user));
-        }
 
-        setIsLogin(true);
-        setVisible(!visible);
-        setIsSuccess(true);
-        setMess('Đăng nhập thành công!')
+          setIsLogin(true);
+          setVisible(!visible);
+          setIsSuccess(true);
+          setMess('Đăng nhập thành công!')
 
-      }).catch(error => {
-        console.log(error);
-        setIsLogin(false);
-        setVisible(!visible);
-        setMess('Đăng nhập không thành công!. Vui lòng kiểm tra lại Email và mật khẩu.')
-      })
+        }).catch(error => {
+          console.log(error);
+          setIsLogin(false);
+          setVisible(!visible);
+          setMess('Đăng nhập không thành công!. Vui lòng kiểm tra lại Email và mật khẩu.')
+        })
     }
     setValidated(true)
   }
